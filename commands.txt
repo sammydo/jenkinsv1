@@ -1,0 +1,40 @@
+First, we'll run Jenkins as a container using the official Jenkins image:
+
+```
+
+docker run -p 8080:8080 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --name jenkins \
+  jenkins/jenkins:alpine
+```
+
+
+
+# Install the latest Docker CE binaries
+RUN apt-get update && \
+    apt-get -y install apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg2 \
+      software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+    add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+      $(lsb_release -cs) \
+      stable" && \
+   apt-get update && \
+   apt-get -y install docker-ce
+
+
+
+reference:
+
+https://technologyconversations.com/2017/06/16/automating-jenkins-docker-setup/comment-page-1/
+
+
+
+
+apline:
+
+https://github.com/gliderlabs/docker-alpine/blob/master/docs/usage.md
+

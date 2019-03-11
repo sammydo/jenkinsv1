@@ -1,0 +1,18 @@
+version: '3.1'
+ 
+services:
+ 
+  jenkins:
+    image: sammydo/jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    secrets:
+      - jenkins-user
+      - jenkins-pass
+ 
+secrets:
+  jenkins-user:
+    file: user.txt
+  jenkins-pass:
+    file: pass.txt
